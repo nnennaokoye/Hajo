@@ -21,7 +21,7 @@ export function WalletButton() {
 
   return (
     <Button onClick={connectWallet}>
-      Connect Wallet
+      Connect wallet
     </Button>
   );
 }

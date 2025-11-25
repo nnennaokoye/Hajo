@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Menu } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { WalletButton } from "@/components/wallet-button"
 
 export function DashboardHeader() {
   
@@ -20,9 +21,7 @@ export function DashboardHeader() {
           </Link>
 
           <div className="flex items-center gap-4">
-            <Button size="lg" className="hidden sm:flex rounded-full px-6" asChild>
-              <Link href="/">Home</Link>
-            </Button>
+            <WalletButton />
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

@@ -14,6 +14,7 @@ export const useWallet = () => {
 
   const connectWallet = useCallback(async () => {
     try {
+      console.log("Connect wallet clicked", { hasOpen: !!open });
       await open();
     } catch (error) {
       console.error("Failed to open wallet modal", error);

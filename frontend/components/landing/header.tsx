@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { WalletButton } from "@/components/wallet-button"
  
 
 export function Header() {
@@ -18,9 +19,7 @@ export function Header() {
           </Link>
 
           <div className="flex items-center gap-4">
-            <Button size="lg" className="rounded-full px-8" asChild>
-              <Link href="/dashboard">Launch App</Link>
-            </Button>
+            <WalletButton />
           </div>
         </div>
       </div>
