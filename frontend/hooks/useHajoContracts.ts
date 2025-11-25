@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useWriteContract, usePublicClient, useWaitForTransactionReceipt } from 'wagmi'
+import { parseEther } from 'viem'
 
 // Import ABIs as const
 const FACTORY_ABI = [
@@ -84,23 +86,81 @@ async function extractPoolAddress(publicClient: any, txHash: `0x${string}`): Pro
 
 // Approve token spending
 export function useApproveToken(spender: string, amount: string) {
-  // Placeholder - wallet connection removed
+  const [hash, setHash] = useState<`0x${string}` | undefined>(undefined)
+  const { writeContractAsync, isPending } = useWriteContract()
+  const {
+    isLoading: isConfirming,
+    isSuccess,
+  } = useWaitForTransactionReceipt({
+    hash,
+    query: {
+      enabled: !!hash,
+    },
+  })
+
+  const approve = async () => {
+    try {
+      if (!spender || !amount) return
+
+      const value = parseEther(amount as `${number}`)
+
+      const txHash = await writeContractAsync({
+        address: TOKEN_ADDRESS,
+        abi: ERC20_ABI,
+        functionName: 'approve',
+        args: [spender as `0x${string}`, value],
+      })
+
+      setHash(txHash as `0x${string}`)
+    } catch (err) {
+      console.error('Approve token failed:', err)
+    }
+  }
+
   return {
-    approve: () => console.log('Wallet connection removed'),
-    isLoading: false,
-    isSuccess: false,
-    hash: undefined,
+    approve,
+    isLoading: isPending || isConfirming,
+    isSuccess,
+    hash,
   }
 }
 
 // ROTATIONAL POOL HOOKS
 export function useRotationalDeposit(poolAddress: string) {
-  // Placeholder - wallet connection removed
+  const [hash, setHash] = useState<`0x${string}` | undefined>(undefined)
+  const { writeContractAsync, isPending } = useWriteContract()
+  const {
+    isLoading: isConfirming,
+    isSuccess,
+  } = useWaitForTransactionReceipt({
+    hash,
+    query: {
+      enabled: !!hash,
+    },
+  })
+
+  const deposit = async () => {
+    try {
+      if (!poolAddress) return
+
+      const txHash = await writeContractAsync({
+        address: poolAddress as `0x${string}`,
+        abi: ROTATIONAL_ABI,
+        functionName: 'contribute',
+        args: [],
+      })
+
+      setHash(txHash as `0x${string}`)
+    } catch (err) {
+      console.error('Rotational deposit failed:', err)
+    }
+  }
+
   return {
-    deposit: () => console.log('Wallet connection removed'),
-    isLoading: false,
-    isSuccess: false,
-    hash: undefined,
+    deposit,
+    isLoading: isPending || isConfirming,
+    isSuccess,
+    hash,
   }
 }
 
@@ -112,14 +172,60 @@ export function useCreateRotational(
   treasuryFeeBps: number,
   relayerFeeBps: number
 ) {
-  // Placeholder - wallet connection removed
   const [poolAddress, setPoolAddress] = useState<string | null>(null)
+  const [hash, setHash] = useState<`0x${string}` | undefined>(undefined)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const publicClient = usePublicClient()
+  const { writeContractAsync } = useWriteContract()
+
+  const create = async () => {
+    try {
+      if (!FACTORY_ADDRESS || members.length === 0 || !depositAmount) return
+
+      setIsLoading(true)
+      setIsSuccess(false)
+
+      const amountWei = parseEther(depositAmount as `${number}`)
+
+      const frequencyMap: Record<string, number> = {
+        daily: 86400,
+        weekly: 604800,
+        biweekly: 1209600,
+        monthly: 2592000,
+      }
+
+      const epochDurationSeconds = frequencyMap[frequency] ?? frequencyMap.weekly
+
+      const txHash = await writeContractAsync({
+        address: FACTORY_ADDRESS,
+        abi: FACTORY_ABI,
+        functionName: 'createPool',
+        args: [members as `0x${string}`[], amountWei, BigInt(epochDurationSeconds), BigInt(treasuryFeeBps), BigInt(relayerFeeBps)],
+      })
+
+      setHash(txHash as `0x${string}`)
+
+      if (publicClient) {
+        const poolAddr = await extractPoolAddress(publicClient, txHash as `0x${string}`)
+        setPoolAddress(poolAddr)
+      }
+
+      setIsSuccess(true)
+    } catch (err) {
+      console.error('Create rotational pool failed:', err)
+      setIsSuccess(false)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return {
-    create: () => console.log('Wallet connection removed'),
-    isLoading: false,
-    isSuccess: false,
-    hash: undefined,
+    create,
+    isLoading,
+    isSuccess,
+    hash,
     poolAddress,
   }
 }

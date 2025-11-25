@@ -3,7 +3,17 @@
 import { ReactNode } from "react";
 import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { wagmiConfig } from "@/lib/reown";
+import { AppKitProvider } from "@reown/appkit/react";
+import {
+  wagmiConfig,
+  wagmiAdapter,
+  HEDERA_TESTNET,
+  HEDERA_MAINNET,
+  projectId,
+  appKitMetadata,
+  appKitFeatures,
+  appKitThemeVariables,
+} from "@/lib/reown";
 
 const queryClient = new QueryClient();
 
@@ -11,7 +21,18 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        {children}
+        <AppKitProvider
+          adapters={[wagmiAdapter]}
+          projectId={projectId}
+          networks={[HEDERA_TESTNET, HEDERA_MAINNET]}
+          metadata={appKitMetadata}
+          features={appKitFeatures}
+          allWallets="SHOW"
+          themeMode="dark"
+          themeVariables={appKitThemeVariables}
+        >
+          {children}
+        </AppKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );

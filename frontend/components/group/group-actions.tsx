@@ -10,6 +10,7 @@ import {
   useApproveToken,
   useRotationalDeposit,
 } from "@/hooks/useHajoContracts"
+import { useWallet } from "@/hooks/useWallet"
 
 interface GroupActionsProps {
   groupId: string
@@ -24,7 +25,7 @@ export function GroupActions({
   poolType,
   tokenAddress,
 }: GroupActionsProps) {
-  const address = null // Wallet connection removed
+  const { address } = useWallet() // Wallet connection removed
   const [depositAmount, setDepositAmount] = useState("")
   const [isApproving, setIsApproving] = useState(false)
   const [approved, setApproved] = useState(false)

@@ -11,12 +11,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Plus, X, Loader2, AlertCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useCreateRotational } from "@/hooks/useHajoContracts"
+import { useWallet } from "@/hooks/useWallet"
 
 const TOKEN_ADDRESS = process.env.NEXT_PUBLIC_TOKEN_ADDRESS || "0x04F9CE8FDba78e489D2dF705c3498736EfBa6D28"
 
 export function RotationalForm() {
   const router = useRouter()
-  const address = null // Wallet connection removed
+  const { address } = useWallet() // Wallet connection removed
 
   const [members, setMembers] = useState<string[]>([""])
   const [error, setError] = useState("")
