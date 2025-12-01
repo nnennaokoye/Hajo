@@ -1,137 +1,44 @@
-# Hajoo 🌍  
-### Bringing Africa’s Trusted Savings Circles Onchain  
+# Hajoo
 
-**Hajoo** is a decentralized community savings and payout platform built on **Hedera**, designed to bring Africa’s age-old group savings system — known as *Ajo*, *Esusu*, *Stokvel*, or *Chama* — into the digital age.  
-It enables trusted circles to automate contributions, payouts, and transparency using smart contracts.  
+Hajoo is a simple, onchain community savings (Ajo/Esusu) app built on Hedera. Create a rotational savings pool with friends, contribute on schedule, and track everything transparently from a clean dashboard.
 
----
+## What’s included (MVP)
+- Rotational savings pool creation and contributions
+- Wallet connection via WalletConnect AppKit (MetaMask, etc.)
+- Hedera Testnet/Mainnet configuration
+- Minimal dashboard for pools and activity
 
-## 🚀 Overview  
+## Tech Stack
+- Frontend: Next.js, React, Tailwind CSS
+- Wallet/Chains: wagmi + @reown/appkit (WalletConnect)
+- Contracts: Solidity (Factory + Pool), Hardhat/Foundry
 
-Across Africa, millions of people rely on informal savings groups to pool money and support one another.  
-While these systems foster trust and cooperation, they often face problems like missed payments, fraud, and lack of transparency.  
+## Quickstart
+1) Prerequisites
+- Node.js 18+
+- A WalletConnect Project ID
 
-**Hajoo solves this by putting savings groups onchain.**  
-Funds are managed by smart contracts — not people — ensuring automation, transparency, and fairness for everyone.  
+2) Env vars (frontend/.env.local)
+```
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FACTORY_ADDRESS=0x...
+NEXT_PUBLIC_TOKEN_ADDRESS=0x...
+# Optional custom RPC
+NEXT_PUBLIC_HEDERA_RPC_URL=https://testnet.hashio.io/api
+```
 
----
+3) Run the app
+```
+cd frontend
+npm install
+npm run dev
+```
+Open http://localhost:3000
 
-## 💡 Current Features  
+## Notes
+- If MetaMask extension isn’t installed, use WalletConnect (QR) or MetaMask Mobile browser.
+- Hedera networks supported: Testnet (296) and Mainnet (295).
 
-### 🔐 Onchain Trust  
-Every group is governed by a smart contract escrow.  
-No central collector. No manual records. Just code enforcing group rules.  
-
-### ⚡ Automated Contributions & Payouts  
-Contributions and payouts happen automatically on schedule — no delays, no disputes.  
-
-### 📊 Transparent Tracking  
-Every transaction is verifiable onchain, ensuring full visibility for all group members.  
-
-### 💰 Rotational Savings (MVP)  
-- **Rotational Mode** – Members take turns receiving payouts.  
-  
-Additional modes (Target/Flexible) are planned in the roadmap.  
-
-### 🔗 Wallet Connect  
-Connect with WalletConnect AppKit and manage contributions from the dashboard.  
-
-### 🌐 Accessibility  
-Supports multiple wallets and will integrate **zkLogin** for social/email onboarding.  
-
----
-
-## 🧱 Tech Stack  
-
-**Smart Contracts (Solidity)**  
-- `GroupFactory.sol` – Deploys new savings groups  
-- `RotationalSavings.sol` – Handles rotational cycles and payouts  
-- `TargetPool.sol` – Goal-based savings  
-- `FlexiblePool.sol` – Flexible deposits with optional yield  
-- `ReputationRegistry.sol` – Tracks user savings behavior  
-
-**Frontend**  
-- **Next.js** + **Tailwind CSS** – Responsive, mobile-first interface  
-- **Wagmi + Reown AppKit** – Wallet connection and onchain interaction  
-
-**Infrastructure**  
-- **Hedera Network** – Low-cost and fast  
-- **Foundry/Hardhat** – Smart contract development and testing  
-
----
-
-## 🪙 Current Setup  
-
-For now, Hajoo uses a **mock USDT token** for contributions and payouts:  
-`NEXT_PUBLIC_TOKEN_ADDRESS=0x04F9CE8FDba78e489D2dF705c3498736EfBa6D28`
-
-
----
-
-## 🧩 Why Onchain?  
-
-Hajoo is built onchain to solve trust and transparency issues in traditional savings systems.  
-- **Smart contracts** manage funds safely and automatically.  
-- **Transparency** ensures every member can verify group activity.  
-- **Global participation** allows members anywhere to join and contribute.  
-
-We’re not eliminating traditional savings circles — we’re **redefining them** and **onboarding communities into a secure, inclusive, and borderless financial system.**
-
----
-
-## 🧠 Challenges  
-
-During development, we ran into:  
-- **State management issues** when trying to display groups for a newly added member.  
-- **Mock token limitations** while testing payment flows.  
-- **Time constraints**, which limited some UI and integration polish.  
-
-These will be improved as we continue to refine the project.  
-
----
-
-## 🎯 Roadmap  
-
-**Phase 1 – MVP (Current)**  
-- Wallet connection and basic dashboard  
-- Group creation & contributions (Rotational)  
-
-**Phase 2 – Enhancement (Q1 2026)**  
-- Yield integrations with DeFi protocols  
-- Mobile app  
-- Group chat (XMTP)  
-- Reputation system  
-
-**Phase 3 – Scale (Q2–Q4 2026)**  
-- zkLogin social onboarding  
-- Fiat on-ramp (Paystack/MoonPay)  
-- Microloan marketplace  
-- DAO governance for verified groups  
-
----
-
-## 👥 Target Users  
-
-- Community cooperatives and trade associations  
-- Family and friend savings circles  
-- Women’s groups and youth collectives  
-- Faith-based and social organizations  
-
----
-
-## 🏆 Why Hajoo  
-
-Hajoo digitizes Africa’s most trusted financial culture — not to replace it, but to **enhance** it.  
-By combining familiar community savings with blockchain’s automation and transparency, Hajoo builds a bridge between **tradition and technology**, empowering millions to save, invest, and grow together.  
-
----
-
-## 🔗 Links  
-
-- **Live App:** [app.hajoo.xyz](#)
-- **GitHub:** [github.com/NOM-GAME/Hajo](https://github.com/NOM-GAME/Hajo)  
-
----
-
-### Built with ❤️ for African communities.  
-### Powered by Hedera.  
+## Links
+- Repo: https://github.com/NOM-GAME/Hajo
+- Chain: https://hedera.com
