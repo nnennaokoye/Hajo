@@ -154,7 +154,7 @@ export function DashboardTabs() {
           onValueChange={setActiveTab} 
           className="w-full"
         >
-          <TabsList className="w-full justify-center gap-2 p-1 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/70 shadow-sm rounded-2xl transition-all duration-300 hover:shadow-md dark:hover:shadow-gray-800/50">
+          <TabsList className="w-full justify-center gap-2 p-1 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/70 shadow-sm hover:shadow-md/60 dark:hover:shadow-gray-900/60 rounded-2xl transition-all duration-300">
             <TabsTrigger 
               value="groups" 
               className="group gap-1.5 rounded-xl px-5 py-1.5 md:px-7 md:py-2 min-w-[110px] md:min-w-[140px] text-xs md:text-sm font-medium data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm transition-all duration-200 hover:bg-gray-50/80 dark:hover:bg-gray-700/60 hover:shadow-sm active:scale-95"
