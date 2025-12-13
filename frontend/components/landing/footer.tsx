@@ -52,7 +52,7 @@ export function Footer() {
                 Dashboard
               </Link>
               <a 
-                href="https://github.com/Uchechukwu-Ekezie/Hajo" 
+                href="https://github.com/nnennaokoye/Hajo" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
@@ -80,7 +80,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/Uchechukwu-Ekezie/Hajo"
+              href="https://github.com/nnennaokoye/Hajo"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
