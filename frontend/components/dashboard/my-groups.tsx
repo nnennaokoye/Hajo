@@ -223,7 +223,7 @@ export function MyGroups({ onCreateClick }: MyGroupsProps) {
 
                 <Button className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" variant="outline" asChild>
                   <Link href={`/dashboard/group/${pool.id}`}>
-                    View Details
+                     Details
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
