@@ -183,7 +183,7 @@ export function MyGroups({ onCreateClick }: MyGroupsProps) {
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <Users className="h-3.5 w-3.5" />
-                       Pool Members
+                      Members
                       </div>
                       <div className="text-lg font-semibold">{pool.members_count}</div>
                     </div>
@@ -223,7 +223,7 @@ export function MyGroups({ onCreateClick }: MyGroupsProps) {
 
                 <Button className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" variant="outline" asChild>
                   <Link href={`/dashboard/group/${pool.id}`}>
-                     Details
+                    View Details
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
