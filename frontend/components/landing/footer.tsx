@@ -39,7 +39,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                <span>Somnia</span>
+                <span></span>
               </div>
             </div>
           </div>
