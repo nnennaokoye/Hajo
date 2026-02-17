@@ -16,7 +16,7 @@ export function DashboardHeader() {
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" aria-label="Back to home" className="inline-flex">
-              <Button variant="" size="icon" className="transition-all duration-200 hover:bg-accent/50">
+              <Button variant="ghost" size="icon" className="transition-all duration-200 hover:bg-accent/50">
                 <ArrowLeft className="h-5 w-5" />
               </Button>
             </Link>
